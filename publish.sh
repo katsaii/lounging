@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! ./build.sh --release; then
+    echo "failed to build (see output)"
+    exit 1
+fi
+
 artdir=webring
 
 # clear previous deployments
@@ -19,7 +24,7 @@ fi
 if command -v git &> /dev/null; then
     if ! [[ -z "$(git status -s)" ]]; then
         echo "[ERROR!] commit or stash your local changes before calling ./publish.sh"
-        exit 1
+        exit 2
     fi
 
     brdest=gh-pages
