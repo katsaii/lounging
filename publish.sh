@@ -43,7 +43,7 @@ if command -v git &> /dev/null; then
         echo "committing changes"
         git add .
         git commit -m "publish $dt"
-        git push origin $brdest
+        git push origin $brdest --force
     else
         echo "missing 'webring' directory (did you run ringfairy?)"
     fi
