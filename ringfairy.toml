@@ -1,8 +1,8 @@
-base_url = "https://webring.domain.tld"
-ring_name = "Webring"
-ring_description = "A webring to connect member sites."
-ring_owner = "Webring Organization / Person"
-ring_owner_site = "https://domain.tld"
+base_url = "https://www.katsaii.com/lounging"
+ring_name = "Loungeware Collective"
+ring_description = "A webring to add something cool to later."
+ring_owner = "Katsaii"
+ring_owner_site = "https://www.katsaii.com"
 
 filepath_list = "./websites.json"   # Website list; should be a JSON file with 'name', 'url', etc 
 path_output = "./webring"           # Generated files will be saved in this folder.
@@ -16,7 +16,7 @@ client_header = "text/html,application/xhtml+xml,application/xml;q=0.9,image/web
 audit_retries_delay = 100
 audit_retries_max = 2
 
-shuffle = false         # Randomizes website sequence when generating
+shuffle = true          # Randomizes website sequence when generating
 verbose = false         # Enables verbose logging
 skip_minify = false     # If your generated HTML have issues, or you want hand-editable output, try skip minification
 skip_verify = false     # Skips verification of the URLs in the list. Might be unwise!
