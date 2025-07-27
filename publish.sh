@@ -4,27 +4,17 @@ if ! [[ $* = *--no-build* ]]
 then
     if ! ./build.sh --release
     then
+        echo
         echo "failed to build (see output)"
         exit 1
     fi
 else
+    echo
     echo "skipping build"
 fi
 
+artcname="www.loungeware.club"
 artdir=webring
-
-# clear previous deployments
-# thank you: https://github.com/orgs/community/discussions/85000#discussioncomment-9284450
-if command -v "gh" &> /dev/null
-then
-    for ID in $(gh api -X GET /repos/{owner}/{repo}/deployments | jq -r ".[] | .id")
-    do
-        echo "deleting deployment $ID"
-        gh api -X DELETE /repos/{owner}/{repo}/deployments/$ID | jq '.'
-    done
-else
-    echo "'gh' command not installed: skipping deployments"
-fi
 
 # create and publish gh-pages branch
 # adapts code heavily from: https://matthew-brett.github.io/pydagogue/gh-pages-intro.html
@@ -32,6 +22,7 @@ if command -v git &> /dev/null
 then
     if ! [[ -z "$(git status -s)" ]]
     then
+        echo
         echo "[ERROR!] commit or stash your local changes before calling ./publish.sh"
         exit 2
     fi
@@ -42,9 +33,11 @@ then
 
     if git branch -D $brdest &> /dev/null
     then
-        echo "\ndeleted old '$brdest' branch"
+        echo
+        echo "deleted old '$brdest' branch"
     fi
 
+    echo
     echo "creating '$brdest' branch"
     git checkout --orphan $brdest
     git reset --hard
@@ -52,20 +45,29 @@ then
 
     if [ -d $artdir ]
     then
+        echo
         echo "moving artifacts into repo root directory"
         mv webring/* ./
         rmdir webring
 
+        echo
+        echo "adding CNAME"
+        echo $artcname > CNAME
+
+        echo
         echo "committing changes"
         git add .
         git commit -m "publish $dt"
         git push origin $brdest --force
     else
+        echo
         echo "missing 'webring' directory (did you run ringfairy?)"
     fi
 
+    echo
     echo "resetting to '$brcurr' branch"
     git checkout $brcurr
 
+    echo
     echo "done! welcome to the loungeware nation"
 fi
