@@ -13,6 +13,20 @@ else
     echo "skipping build"
 fi
 
+# clear previous deployments
+# thank you: https://github.com/orgs/community/discussions/85000#discussioncomment-9284450
+if command -v "gh" &> /dev/null
+then
+    for ID in $(gh api -X GET /repos/{owner}/{repo}/deployments | jq -r ".[] | .id")
+    do
+        echo "deleting deployment $ID"
+        gh api -X POST /repos/{owner}/{repo}/deployments/$ID/statuses -f state=inactive | true
+        gh api -X DELETE /repos/{owner}/{repo}/deployments/$ID | true
+    done
+else
+    echo "'gh' command not installed: skipping deployments"
+fi
+
 artcname="www.loungeware.club"
 artdir=webring
 
