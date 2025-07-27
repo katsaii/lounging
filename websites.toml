@@ -1,0 +1,19 @@
+[[websites]]
+name = "Katsaii Homepage"
+slug = "katsaii"
+about = "Home of the Katsaii nation."
+url = "https://www.katsaii.com/"
+owner = "katsaii"
+
+    [websites.misc]
+    colour = "#FF00FF"
+
+[[websites]]
+name = "Mashmerlow Homepage"
+slug = "mashmerlow"
+about = "Failgirl extraordinaire."
+url = "https://mashmerlow.art/"
+owner = "mashmerlow"
+
+    [websites.misc]
+    colour = "#00FFFF"
