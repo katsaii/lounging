@@ -5,9 +5,6 @@ about = "Home of the Katsaii nation."
 url = "https://www.katsaii.com/"
 owner = "katsaii"
 
-    [websites.misc]
-    colour = "#FF00FF"
-
 [[websites]]
 name = "Mashmerlow Homepage"
 slug = "mashmerlow"
@@ -15,5 +12,9 @@ about = "Failgirl extraordinaire."
 url = "https://mashmerlow.art/#links"
 owner = "mashmerlow"
 
-    [websites.misc]
-    colour = "#00FFFF"
+[[websites]]
+name = "Net8floz Homepage"
+slug = "net8floz"
+about = "The catman."
+url = "https://net8floz.loungeware.games/"
+owner = "net8floz"
