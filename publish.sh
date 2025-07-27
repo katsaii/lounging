@@ -8,7 +8,7 @@ then
         exit 1
     fi
 else
-    echo "\nskipping build"
+    echo "skipping build"
 fi
 
 artdir=webring
@@ -19,11 +19,11 @@ if command -v "gh" &> /dev/null
 then
     for ID in $(gh api -X GET /repos/{owner}/{repo}/deployments | jq -r ".[] | .id")
     do
-        echo "\ndeleting deployment $ID"
+        echo "deleting deployment $ID"
         gh api -X DELETE /repos/{owner}/{repo}/deployments/$ID | jq '.'
     done
 else
-    echo "\n'gh' command not installed: skipping deployments"
+    echo "'gh' command not installed: skipping deployments"
 fi
 
 # create and publish gh-pages branch
@@ -32,7 +32,7 @@ if command -v git &> /dev/null
 then
     if ! [[ -z "$(git status -s)" ]]
     then
-        echo "\n[ERROR!] commit or stash your local changes before calling ./publish.sh"
+        echo "[ERROR!] commit or stash your local changes before calling ./publish.sh"
         exit 2
     fi
 
@@ -45,27 +45,27 @@ then
         echo "\ndeleted old '$brdest' branch"
     fi
 
-    echo "\ncreating '$brdest' branch"
+    echo "creating '$brdest' branch"
     git checkout --orphan $brdest
     git reset --hard
     #git clean -fxd
 
     if [ -d $artdir ]
     then
-        echo "\nmoving artifacts into repo root directory"
+        echo "moving artifacts into repo root directory"
         mv webring/* ./
         rmdir webring
 
-        echo "\ncommitting changes"
+        echo "committing changes"
         git add .
         git commit -m "publish $dt"
         git push origin $brdest --force
     else
-        echo "\nmissing 'webring' directory (did you run ringfairy?)"
+        echo "missing 'webring' directory (did you run ringfairy?)"
     fi
 
-    echo "\nresetting to '$brcurr' branch"
+    echo "resetting to '$brcurr' branch"
     git checkout $brcurr
 
-    echo "\ndone! welcome to the loungeware nation"
+    echo "done! welcome to the loungeware nation"
 fi
