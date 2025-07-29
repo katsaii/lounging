@@ -18,3 +18,10 @@ slug = "net8floz"
 about = "The catman."
 url = "https://net8floz.loungeware.games/"
 owner = "net8floz"
+
+[[websites]]
+name = "Baku Homepage"
+slug = "baku"
+about = "Game Girl Advance."
+url = "http://baku.dk/"
+owner = "baku"
